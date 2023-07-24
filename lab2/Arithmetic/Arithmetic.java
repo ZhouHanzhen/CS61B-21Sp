@@ -11,7 +11,8 @@ public class Arithmetic {
      * @return Product of a and b
      * */
     public static int product(int a, int b) {
-        return a * b;
+        int p = a * b;
+        return p;
     }
 
     /** Computes sum of two ints (incorrectly).
@@ -20,6 +21,7 @@ public class Arithmetic {
      * @return Sum of a and b
      * */
     public static int sum(int a, int b) {
-        return a + b;
+        int s = a + b;
+        return s;
     }
 }
