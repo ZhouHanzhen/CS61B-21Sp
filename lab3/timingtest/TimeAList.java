@@ -21,7 +21,40 @@ public class TimeAList {
         timeAListConstruction();
     }
 
+
+    /**
+     * Counting the time of creating a AList of size N using  function additive addLast();
+     * @param N
+     * @return timeInSeconds, the time of creating a AList of size N
+     */
+    public static double timeOneAListConstruction(int N){
+        AList<Integer> sizeN = new AList<>();
+        Stopwatch sw = new Stopwatch();
+        for (int i = 0; i < N; i++) {
+            sizeN.addLast(i);
+        }
+        double timeInSeconds = sw.elapsedTime();
+        return timeInSeconds;
+    }
+
     public static void timeAListConstruction() {
         // TODO: YOUR CODE HERE
+
+        AList<Integer> Ns = new AList<>();
+        AList<Integer> opCounts = new AList<>();
+        AList<Double> times = new AList<>();
+
+        //Create Ns, times, opCounts
+        for (int N = 1000; N <= 128000; N = N * 2) {
+            Ns.addLast(N);
+            opCounts.addLast(N);
+            double timeInSeconds = timeOneAListConstruction(N);
+            times.addLast(timeInSeconds);
+        }
+
+        //print the tabulation
+        printTimingTable(Ns, times, opCounts);
     }
+
+
 }
