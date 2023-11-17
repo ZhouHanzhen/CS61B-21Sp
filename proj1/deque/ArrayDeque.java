@@ -115,10 +115,12 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T>{
         return items[(first + index) % items.length];
     }
 
+    /**
     @Override
     public boolean isEmpty() {
         return size == 0;
     }
+   */
 
     @Override
     public void printDeque() {

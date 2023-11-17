@@ -53,10 +53,11 @@ public class LinkedListDeque<T> implements Deque<T>, Iterable<T>{
         size = size + 1;
     }
 
+    /**
     @Override
     public boolean isEmpty() {
         return size == 0;
-    }
+    }*/
 
     @Override
     public int size() {
