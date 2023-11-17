@@ -147,6 +147,70 @@ public class ArrayDequeTest {
         assertEquals("Should return null when removeLast is called on an empty Deque,", null, lld1.removeLast());
     }
 
+    @Test
+    public void iterableArrayDequeTest() {
+        ArrayDeque<Integer> lld1 = new ArrayDeque<>();
+        lld1.addFirst(3);
+        lld1.addLast(6);
+        lld1.addLast(10);
+        lld1.addLast(98);
+        lld1.addLast(76);
+        lld1.addLast(53);
 
+        for(int i : lld1) {
+            System.out.println(i);
+        }
+        System.out.println(lld1.size());
+    }
+
+    @Test
+    public void equalsTest() {
+        ArrayDeque<Integer> lld1 = new ArrayDeque<>();
+        lld1.addFirst(3);
+        lld1.addLast(6);
+        lld1.addLast(10);
+        lld1.addLast(98);
+        lld1.addLast(76);
+        lld1.addLast(53);
+
+        LinkedListDeque<Integer> lld2 = new LinkedListDeque<>();
+        lld2.addFirst(3);
+        lld2.addLast(6);
+        lld2.addLast(10);
+        lld2.addLast(98);
+        lld2.addLast(76);
+        lld2.addLast(53);
+
+        assertTrue("lld1 should equal to lld2", lld1.equals(lld2));
+    }
+
+    @Test
+    public void resizeTest() {
+        ArrayDeque<Integer> lld2 = new ArrayDeque<>();
+        for (int i = 0; i < 1000; i++) {
+            if (i % 2 == 0) {
+                lld2.addLast(i);
+            }
+            else {
+                lld2.addFirst(i);
+            }
+        }
+        //lld2.printDeque();
+        for (int j = 800; j > 0; j--) {
+            if (j % 2 == 0) {
+                lld2.removeLast();
+            }
+            else {
+                lld2.removeFirst();
+            }
+        }
+        //lld2.printDeque();
+
+        for (int k = 180; k > 0; k--) {
+            lld2.removeFirst();
+        }
+        lld2.printDeque();
+        System.out.println(lld2.size());
+    }
 
 }
