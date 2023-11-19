@@ -2,12 +2,12 @@ package deque;
 
 import java.util.Iterator;
 
-public class LinkedListDeque<T> implements Deque<T>, Iterable<T>{
+public class LinkedListDeque<T> implements Deque<T>, Iterable<T> {
     /**Doubly Linked List Node*/
-    private class TNode{
-        public TNode prev;
-        public T item;
-        public TNode next;
+    private class TNode {
+        private TNode prev;
+        private T item;
+        private TNode next;
         public TNode(TNode p, T i, TNode n) {
             prev = p;
             item = i;
@@ -30,14 +30,6 @@ public class LinkedListDeque<T> implements Deque<T>, Iterable<T>{
     }
 
 
-    public LinkedListDeque(T x) {
-        sentinel = new TNode(null, null, null);
-        sentinel.next = new TNode(sentinel,x,sentinel);
-        sentinel.prev = sentinel.next;
-        size = 1;
-    }
-
-
     /** Adds x to the front of the list. */
     @Override
     public void addFirst(T x) {
@@ -53,11 +45,6 @@ public class LinkedListDeque<T> implements Deque<T>, Iterable<T>{
         size = size + 1;
     }
 
-    /**
-    @Override
-    public boolean isEmpty() {
-        return size == 0;
-    }*/
 
     @Override
     public int size() {
@@ -117,7 +104,7 @@ public class LinkedListDeque<T> implements Deque<T>, Iterable<T>{
         return p.item;
     }
 
-    public T getRecursiveBasic(TNode p, int index) {
+    private T getRecursiveBasic(TNode p, int index) {
         if(index == 0) {
             return p.item;
         }
