@@ -125,7 +125,7 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
     private class ArrayDequeIterator implements Iterator<T> {
         private int wizPos;
         private int count;
-        public ArrayDequeIterator() {
+        ArrayDequeIterator() {
             wizPos = (nextFront + 1) % items.length;
             count = 0;
         }

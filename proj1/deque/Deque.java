@@ -24,7 +24,7 @@ public interface Deque<T> {
     T get(int index);
 
     //Returns true if deque is empty, false otherwise.
-    default public boolean isEmpty() {
+    default boolean isEmpty() {
         return this.size() == 0;
     }
 

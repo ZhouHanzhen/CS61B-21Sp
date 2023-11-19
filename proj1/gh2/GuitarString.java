@@ -2,8 +2,8 @@ package gh2;
 
 import deque.ArrayDeque;
 import deque.Deque;
-//import java.math.*;
-// TODO: maybe more imports
+
+
 
 
 public class GuitarString {
