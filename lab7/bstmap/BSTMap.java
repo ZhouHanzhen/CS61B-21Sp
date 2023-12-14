@@ -1,35 +1,164 @@
 package bstmap;
 
+import edu.princeton.cs.algs4.StdOut;
+import org.apache.commons.math3.random.BitsStreamGenerator;
+
 import java.util.Iterator;
 import java.util.Set;
 
 public class BSTMap<K extends Comparable<K>, V> implements Map61B<K, V> {
 
+    private int size;
+    private BSTNode bst;
+    public BSTMap() {
+        size = 0;
+        bst = null;
+    }
+
+    private class BSTNode {
+        K key;
+        V val;
+        BSTNode leftChild;
+        BSTNode rightChild;
+
+        BSTNode(K k, V v, BSTNode lchild, BSTNode rChild) {
+            key = k;
+            val = v;
+            leftChild = lchild;
+            rightChild = rChild;
+        }
+
+        //Search a key in a BST
+        //return true if key in this tree;else return false
+        boolean BSTSearch(K searchKey) {
+            int cmp = searchKey.compareTo(this.key);
+            if (cmp == 0) {
+                return true;
+            }
+            else if (cmp < 0) {
+                if (leftChild == null) {
+                    return false;
+                }
+                return leftChild.BSTSearch(searchKey);
+            }
+            else {
+                if (rightChild == null) {
+                    return false;
+                }
+                return rightChild.BSTSearch(searchKey);
+            }
+        }
+
+        BSTNode BSTGet(K getKey) {
+            int cmp = getKey.compareTo(this.key);
+            if (cmp == 0) {
+                return this;
+            }
+            else if (cmp < 0) {
+                if (leftChild == null) {
+                    return null;
+                }
+                return leftChild.BSTGet(getKey);
+            }
+            else {
+                if (rightChild == null) {
+                    return null;
+                }
+                return rightChild.BSTGet(getKey);
+            }
+        }
+
+        //Insert a node to a BST
+        BSTNode BSTInsert(K insertKey, V insertValue) {
+            int cmp = insertKey.compareTo(this.key);
+            if (cmp == 0) {
+                this.val = insertValue; //replace the previous value
+            }
+            else if (cmp < 0) {
+                if (leftChild == null) {
+                    leftChild = new BSTNode(insertKey, insertValue, null, null);
+                }
+                else {
+                    leftChild = leftChild.BSTInsert(insertKey, insertValue);
+                }
+
+            }
+            else {
+                if (rightChild == null) {
+                    rightChild = new BSTNode(insertKey, insertValue, null, null);
+                }
+                rightChild = rightChild.BSTInsert(insertKey, insertValue);
+            }
+            return this;
+        }
+
+        void printInOrderBST() {
+            if (this.leftChild != null) {
+                leftChild.printInOrderBST();
+            }
+            System.out.print(key + ":");
+            System.out.println(val);
+            if (this.rightChild != null) {
+                rightChild.printInOrderBST();
+            }
+        }
+
+    }
+
     @Override
     public void clear() {
-
+        size = 0;
+        bst = null;
     }
 
     @Override
+    //need BST Operation: Search
     public boolean containsKey(K key) {
-        return false;
+        if (bst == null) {
+            return false;
+        }
+        return bst.BSTSearch(key);
     }
 
     @Override
+    //need BST Operation: Search
     public V get(K key) {
-        return null;
+        if (bst == null) {
+            return null;
+        }
+
+        BSTNode lookup = bst.BSTGet(key);
+        if (lookup == null) {
+            return null;
+        }
+        return lookup.val;
     }
 
     @Override
     public int size() {
-        return 0;
+        return size;
     }
 
     @Override
+    //need BST Operation: Insert
     public void put(K key, V value) {
-
+        if (bst == null) {
+            size += 1;
+            bst = new BSTNode(key, value, null, null);
+        }
+        else {
+            if (!containsKey(key)) {
+                size += 1;
+            }
+            bst = bst.BSTInsert(key, value);
+        }
     }
 
+    public void printInOrder() {
+        if (bst != null) {
+            bst.printInOrderBST();
+        }
+    }
 
     @Override
     public Set<K> keySet() {
