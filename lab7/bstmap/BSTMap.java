@@ -5,7 +5,7 @@ import org.apache.commons.math3.random.BitsStreamGenerator;
 
 import java.util.*;
 
-public class BSTMap<K extends Comparable<K>, V> implements Map61B<K, V> {
+public class BSTMap<K extends Comparable<K>, V> implements Map61B<K, V>, Iterable<K> {
 
     private int size;
     private BSTNode bst;
@@ -89,7 +89,9 @@ public class BSTMap<K extends Comparable<K>, V> implements Map61B<K, V> {
                 if (rightChild == null) {
                     rightChild = new BSTNode(insertKey, insertValue, null, null);
                 }
-                rightChild = rightChild.BSTInsert(insertKey, insertValue);
+                else {
+                    rightChild = rightChild.BSTInsert(insertKey, insertValue);
+                }
             }
             return this;
         }
@@ -166,8 +168,8 @@ public class BSTMap<K extends Comparable<K>, V> implements Map61B<K, V> {
     @Override
     public Set<K> keySet() {
         Set<K> s = new HashSet<>();
-        for(K i : keyList) {
-            s.add(i);
+        for (K k : keyList) {
+            s.add(k);
         }
         return s;
     }
