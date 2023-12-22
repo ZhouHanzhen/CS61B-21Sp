@@ -3,16 +3,18 @@ package bstmap;
 import edu.princeton.cs.algs4.StdOut;
 import org.apache.commons.math3.random.BitsStreamGenerator;
 
-import java.util.Iterator;
-import java.util.Set;
+import java.util.*;
 
 public class BSTMap<K extends Comparable<K>, V> implements Map61B<K, V> {
 
     private int size;
     private BSTNode bst;
+    private List<K> keyList;//按增序记录bst中的key
+
     public BSTMap() {
         size = 0;
         bst = null;
+        keyList = new ArrayList<>();
     }
 
     private class BSTNode {
@@ -152,6 +154,7 @@ public class BSTMap<K extends Comparable<K>, V> implements Map61B<K, V> {
             }
             bst = bst.BSTInsert(key, value);
         }
+        keyList.add(key);
     }
 
     public void printInOrder() {
@@ -162,7 +165,11 @@ public class BSTMap<K extends Comparable<K>, V> implements Map61B<K, V> {
 
     @Override
     public Set<K> keySet() {
-        throw new UnsupportedOperationException();
+        Set<K> s = new HashSet<>();
+        for(K i : keyList) {
+            s.add(i);
+        }
+        return s;
     }
 
     @Override
@@ -177,6 +184,21 @@ public class BSTMap<K extends Comparable<K>, V> implements Map61B<K, V> {
 
     @Override
     public Iterator<K> iterator() {
-        throw new UnsupportedOperationException();
+        return new BSTMapIterator();
+    }
+
+    private class BSTMapIterator implements Iterator<K> {
+        private int cur;
+        public BSTMapIterator() {
+            cur = 0;
+        }
+        public boolean hasNext() {
+            return cur < size;
+        }
+        public K next() {
+            K ret = keyList.get(cur);
+            cur += 1;
+            return ret;
+        }
     }
 }
