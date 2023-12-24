@@ -88,6 +88,7 @@ public class TestBSTMapExtra {
         BSTMap rightChild = new BSTMap();
         rightChild.put('A', 1);
         rightChild.put('B', 2);
+        //rightChild.remove('A');
         Integer result = (Integer) rightChild.remove('A');
         assertTrue(result.equals(new Integer(1)));
         for (int i = 0; i < 10; i++) {
@@ -102,7 +103,8 @@ public class TestBSTMapExtra {
         BSTMap leftChild = new BSTMap();
         leftChild.put('B', 1);
         leftChild.put('A', 2);
-        assertTrue(((Integer) leftChild.remove('B')).equals(1));
+        //leftChild.remove('B');
+        assertTrue(((Integer) leftChild.remove('B')).equals(new Integer(1)));
         assertEquals(1, leftChild.size());
         assertEquals(null, leftChild.get('B'));
 
