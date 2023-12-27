@@ -131,8 +131,6 @@ public class  MyHashMap<K, V> implements Map61B<K, V> {
     //Add a Node to the HashTable
     //if N/M is bigger than maxLoad,to resize
     private void addNode(K key, V value) {
-
-
         double load = size * 1.0 / bucketNum;
 
         if (load > loadFactor){
