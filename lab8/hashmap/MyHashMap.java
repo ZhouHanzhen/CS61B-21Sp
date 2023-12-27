@@ -209,6 +209,36 @@ public class  MyHashMap<K, V> implements Map61B<K, V> {
         }
     }
 
+    //remove a node if it matches the key
+    private V delete(K key) {
+        int index = getBucketIndex(key);
+        for (Node n : buckets[index]) {
+            if(n.key.equals(key)) {
+                V v = n.value;
+                buckets[index].remove(n);
+                keys.remove(key);
+                size -= 1;
+                return v;
+            }
+        }
+        return null;
+    }
+
+    //remove a node if it matches the key and the value
+    private V delete(K key, V value) {
+        int index = getBucketIndex(key);
+        for (Node n : buckets[index]) {
+            if((n.key.equals(key)) && (n.value.equals(value))) {
+                V v = n.value;
+                buckets[index].remove(n);
+                keys.remove(key);
+                size -= 1;
+                return v;
+            }
+        }
+        return null;
+    }
+
     @Override
     public int size() {
         return size;
@@ -231,12 +261,12 @@ public class  MyHashMap<K, V> implements Map61B<K, V> {
 
     @Override
     public V remove(K key) {
-        throw new UnsupportedOperationException();
+        return delete(key);
     }
 
     @Override
     public V remove(K key, V value) {
-        throw new UnsupportedOperationException();
+        return delete(key, value);
     }
 
     @Override
@@ -250,9 +280,7 @@ public class  MyHashMap<K, V> implements Map61B<K, V> {
         public MyHashMapIterator() {
             cur = 0;
             keysIter = new ArrayList<>();
-            for (K  k : keys) {
-                keysIter.add(k);
-            }
+            keysIter.addAll(keys);
         }
         @Override
         public boolean hasNext() {
