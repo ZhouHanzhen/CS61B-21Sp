@@ -196,16 +196,7 @@ public class  MyHashMap<K, V> implements Map61B<K, V> {
         return null;
     }
 
-    //When the same key is inserted, update the value
-    private void changeValue(K key, V value) {
-        int index = getBucketIndex(key);
-        for (Node n : buckets[index]) {
-            if(n.key.equals(key)) {
-                n.value = value;
-                break;
-            }
-        }
-    }
+    
 
     //remove a node if it matches the key
     private V delete(K key) {
