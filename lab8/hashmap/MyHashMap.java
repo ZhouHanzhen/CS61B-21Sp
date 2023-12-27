@@ -1,7 +1,5 @@
 package hashmap;
 
-import afu.org.checkerframework.checker.oigj.qual.O;
-import org.checkerframework.checker.units.qual.C;
 
 import java.util.*;
 
@@ -196,7 +194,7 @@ public class  MyHashMap<K, V> implements Map61B<K, V> {
         return null;
     }
 
-    
+
 
     //remove a node if it matches the key
     private V delete(K key) {
