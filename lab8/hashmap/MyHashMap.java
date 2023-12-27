@@ -113,7 +113,7 @@ public class  MyHashMap<K, V> implements Map61B<K, V> {
      *
      * @param tableSize the size of the table to create
      */
-    protected Collection<Node>[] createTable(int tableSize) {
+    private Collection<Node>[] createTable(int tableSize) {
         return new Collection[tableSize];
     }
 
