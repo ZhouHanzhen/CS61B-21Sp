@@ -150,12 +150,6 @@ public class BSTMap<K extends Comparable<K>, V> implements Map61B<K, V>{
         }
 
 
-
-
-
-
-
-
         void printInOrderBST() {
             if (this.leftChild != null) {
                 leftChild.printInOrderBST();
