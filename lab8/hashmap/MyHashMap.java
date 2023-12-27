@@ -199,6 +199,7 @@ public class  MyHashMap<K, V> implements Map61B<K, V> {
     }
 
     //When the same key is inserted, update the value
+    /*
     private void changeValue(K key, V value) {
         int index = getBucketIndex(key);
         for (Node n : buckets[index]) {
@@ -207,7 +208,7 @@ public class  MyHashMap<K, V> implements Map61B<K, V> {
                 break;
             }
         }
-    }
+    }*/
 
     //remove a node if it matches the key
     private V delete(K key) {
@@ -250,7 +251,7 @@ public class  MyHashMap<K, V> implements Map61B<K, V> {
             addNode(key, value);
         }
         else {
-            changeValue(key, value);//replace the value
+            //changeValue(key, value);//replace the value
         }
     }
 
