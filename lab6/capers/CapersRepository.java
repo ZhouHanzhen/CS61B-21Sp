@@ -63,6 +63,8 @@ public class CapersRepository {
         String storyInFile = readContentsAsString(STORY_FILE);
         storyInFile = storyInFile.concat(text).concat("\n");
         writeContents(STORY_FILE, storyInFile);
+        String story = readContentsAsString(CapersRepository.STORY_FILE);
+        System.out.println(story);
     }
 
     /**

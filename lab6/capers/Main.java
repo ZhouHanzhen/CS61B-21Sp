@@ -53,9 +53,6 @@ public class Main {
             validateNumArgs("story", args, 2);
             text = args[1];
             CapersRepository.writeStory(text);
-
-            String story = readContentsAsString(CapersRepository.STORY_FILE);
-            System.out.println(story);
             break;
 
         case "dog":
