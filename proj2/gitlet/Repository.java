@@ -60,21 +60,15 @@ public class Repository {
         }
 
         // initialize COMMITS_FOLDER, STAGE_FOLDER, BLOBS_FOLDER
-        if (!COMMITS_FOLDER.exists()) {
-            COMMITS_FOLDER.mkdir();
-        }
-        if (!STAGE_FOLDER.exists()) {
-            STAGE_FOLDER.mkdir();
-        }
-        if (!BLOBS_FOLDER.exists()) {
-            BLOBS_FOLDER.mkdir();
-        }
+        COMMITS_FOLDER.mkdir();
+        STAGE_FOLDER.mkdir();
+        BLOBS_FOLDER.mkdir();
 
         // Create the initial commit
-        String m = "initial commit";
+        String msg = "initial commit";
         Date time = new Date();
         time.setTime(0); //00:00:00 UTC, Thursday, 1 January 1970
-        Commit initial = new Commit(time, m, null, null);
+        Commit initial = new Commit(time, msg, null, null);
 
         // Adds the initial commit to COMMIT_FOLDER
         initial.saveCommit();
@@ -82,6 +76,7 @@ public class Repository {
         // Share the initial commit
         INITIAL_COMMIT = initial;
 
+        // set the master branch and the HEAD branch to point to this initial commit
         master = initial.getsha1id();
         HEAD = master;
     }
